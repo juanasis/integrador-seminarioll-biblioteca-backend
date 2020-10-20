@@ -32,4 +32,12 @@ public class PersonaService {
         response.setData("guardado");
         return response;
     }
+
+    public Response deletePersona(Integer id) {
+        Response response=new Response();
+        Persona p = personarepo.getOne(id);
+        personarepo.delete(p);
+        response.setData("Persona borrada");
+        return response;
+    }
 }

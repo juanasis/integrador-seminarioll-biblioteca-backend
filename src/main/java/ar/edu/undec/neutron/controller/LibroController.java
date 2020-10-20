@@ -40,6 +40,11 @@ public class LibroController  {
         Response response = libroService.save(libro);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> delete(@PathVariable ( value  =  "id" ) Integer  id ) {
+        Response response = libroService.deleteLibro(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 
 }

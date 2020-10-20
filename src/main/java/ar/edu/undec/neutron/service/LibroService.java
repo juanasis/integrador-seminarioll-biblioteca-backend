@@ -2,6 +2,7 @@ package ar.edu.undec.neutron.service;
 
 import ar.edu.undec.neutron.dto.Response;
 import ar.edu.undec.neutron.modelo.Libro;
+import ar.edu.undec.neutron.modelo.Persona;
 import ar.edu.undec.neutron.repository.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,14 @@ public class LibroService {
         Response response = new Response();
         librorepo.save(libro);
         response.setData("guardado");
+        return response;
+    }
+
+    public Response deleteLibro(Integer id) {
+        Response response = new Response();
+        Libro p = librorepo.getOne(id);
+        librorepo.delete(p);
+        response.setData("Libro borrada");
         return response;
     }
 }
