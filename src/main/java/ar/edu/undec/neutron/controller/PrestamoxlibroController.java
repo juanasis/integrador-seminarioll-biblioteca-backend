@@ -1,6 +1,8 @@
 package ar.edu.undec.neutron.controller;
 
 import ar.edu.undec.neutron.dto.Response;
+import ar.edu.undec.neutron.modelo.Prestamo;
+import ar.edu.undec.neutron.service.PrestamoService;
 import ar.edu.undec.neutron.service.PrestamoxlibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ public class PrestamoxlibroController {
     @Autowired
     PrestamoxlibroService prestamoxlibroService;
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Response> getPrestamosxlibro(@PathVariable(value = "id")Integer prestamoxlibroid)throws  Exception{
         Response response = prestamoxlibroService.findOne(prestamoxlibroid);
@@ -24,5 +27,5 @@ public class PrestamoxlibroController {
         Response response = prestamoxlibroService.findAll();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-   
+  
 }

@@ -1,41 +1,42 @@
 package ar.edu.undec.neutron.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class Prestamoxlibro implements Serializable {
-
-    private Integer id;
-    private Integer libroid;
-    private Integer prestamoid;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private Integer id;
+
+    @JoinColumn(name = "libroid", referencedColumnName = "id")
+    @ManyToOne
+    private Libro libroid;
+
+    @JoinColumn(name = "prestamoid", referencedColumnName = "id")
+    @ManyToOne
+    private Prestamo prestamoid;
+
     public Integer getId() {
         return id;
     }
-    @Basic
-    @Column(name = "libroid")
-    public Integer getLibroid() {
+
+       public Libro getLibroid() {
         return libroid;
     }
 
-    public void setLibroid(Integer libroid) {
+    public void setLibroid(Libro libroid) {
         this.libroid = libroid;
     }
-    @Basic
-    @Column(name = "prestamoid")
-    public Integer getPrestamoid() {
+
+    public Prestamo getPrestamoid() {
         return prestamoid;
     }
 
-    public void setPrestamoid(Integer prestamoid) {
+    public void setPrestamoid(Prestamo prestamoid) {
         this.prestamoid = prestamoid;
     }
 }

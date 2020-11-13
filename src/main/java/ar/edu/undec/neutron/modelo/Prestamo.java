@@ -1,51 +1,55 @@
 package ar.edu.undec.neutron.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-public class Prestamo implements Serializable {
-    private Integer id;
-    private Date fechainicio;
-    private Date fechafin;
-    private Integer personaid;
 
+@Entity
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Prestamo implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Basic
+    @Column(name = "fechainicio")
+    private Date fechainicio;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Basic
+    @Column(name = "fechafin")
+    private Date fechafin;
+    @JoinColumn(name = "personaid", referencedColumnName = "id")
+    @ManyToOne
+    private Persona personaid;
     public void setId(Integer id) {
         this.id = id;
     }
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
-        return id;
-    }
-    @Basic
-    @Column(name = "fechainicio")
+
+    public Integer getId() {        return id;    }
     public Date getFechainicio() {
         return fechainicio;
     }
-
     public void setFechainicio(Date fechainicio) {
         this.fechainicio = fechainicio;
     }
-    @Basic
-    @Column(name = "fechafin")
     public Date getFechafin() {
         return fechafin;
     }
-
     public void setFechafin(Date fechafin) {
         this.fechafin = fechafin;
     }
-    @Basic
-    @Column(name = "personaid")
-    public Integer getPersonaid() {
+    public Persona getPersonaid() {
         return personaid;
     }
-
-    public void setPersonaid(Integer personaid) {
+    public void setPersonaid(Persona personaid) {
         this.personaid = personaid;
     }
+
+
 }

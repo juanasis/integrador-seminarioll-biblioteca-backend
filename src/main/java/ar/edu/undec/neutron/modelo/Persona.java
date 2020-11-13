@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 
 public class Persona implements Serializable {
     private Integer id;
